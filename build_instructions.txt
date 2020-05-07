@@ -1,0 +1,22 @@
+# Set the environmental variables for the program to be able to compile successfully
+# ZEPHYR_SDK_BASE_PATH is the path where the sdk was downloaded... it could change, its up to you.
+export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+export ZEPHYR_SDK_INSTALL_DIR=~/${ZEPHYR_SDK_BASE_PATH}/zephyr-sdk-0.11.2
+# Or it could be the official ARM toolchain. But don't have the correct path.
+
+
+# The build instructions once the environmental variables have been set.
+mkdir build && cd build
+
+# The option to do it with make is this one
+cmake -DBOARD=frdm_kl25z ..
+make -j4
+
+# The option to do it with Ninja is this one.
+cmake -GNinja -DBOARD=frdm_kl25z ..
+ninja
+
+# To clean a new build you can call the following
+make clean
+# Or with ninja
+ninja clean
